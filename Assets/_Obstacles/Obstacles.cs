@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+
 public class Obstacles : MonoBehaviour
 {
+    
     [SerializeField] private int Hitpoints = 3;
     [SerializeField] private bool RandomRotation = false;
 
@@ -20,6 +22,8 @@ public class Obstacles : MonoBehaviour
         if(transform.position.z <= -8)
         {
             Destroy(gameObject);
+            
         }
+        
     }
 }

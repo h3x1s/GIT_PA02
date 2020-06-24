@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -17,10 +18,14 @@ public class Player : MonoBehaviour
 
     void Start()
     {
+        
         thisController = GetComponent<CharacterController>();
         thisAnimator = GetComponentInChildren<Animator>();
         playerMesh = transform.GetChild(0);
+        
     }
+   
+    
 
     void Update()
     {
@@ -49,9 +54,29 @@ public class Player : MonoBehaviour
             else
                 MoveDirection.y += JumpValue * Time.deltaTime;
         }
-
+        
         thisController.Move(MoveDirection);
         transform.position = new Vector3(Mathf.Clamp(transform.position.x, -1.5f, 1.5f), transform.position.y, transform.position.z);
+
+        
+        
+       
     }
+    void OnTriggerEnter(Collider other)
+    {
+        if(other.gameObject.tag == "Obstacles")
+        {
+            Destroy(other.gameObject);
+            Debug.Log("Ded");
+            SceneManager.LoadScene(0);
+        }
+    }
+   
+    
+    
+    
+    
+    
 
 }
+
